@@ -191,7 +191,6 @@ BundleArtifacts/
 !*.[Cc]ache/
 
 # Others
-client/
 ~$*
 *~
 *.dbmdl
