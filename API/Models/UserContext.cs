@@ -10,5 +10,6 @@ namespace API.models
         {
             Database.EnsureCreated();
         }
+
     }
 }

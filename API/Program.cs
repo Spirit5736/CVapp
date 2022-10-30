@@ -1,17 +1,16 @@
+using API.models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using API.Data;
-using API.Areas.Identity.Data;
 
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration.GetConnectionString("APIContextConnection") ?? throw new InvalidOperationException("Connection string 'APIContextConnection' not found.");
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
-builder.Services.AddDbContext<APIContext>(options =>
-    options.UseSqlServer(connectionString));
+//builder.Services.AddDbContext<APIContext>(options =>
+//    options.UseSqlServer(connectionString));
 
-builder.Services.AddDefaultIdentity<APIUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<APIContext>();
+//builder.Services.AddDefaultIdentity<APIUser>(options => options.SignIn.RequireConfirmedAccount = true)
+//    .AddEntityFrameworkStores<APIContext>();
 
 // Add services to the container.
 
@@ -24,7 +23,10 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
         {
             options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
         });
-
+builder.Services.AddDbContext<UserContext>(options =>
+{
+    options.UseSqlServer(connectionString);
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
