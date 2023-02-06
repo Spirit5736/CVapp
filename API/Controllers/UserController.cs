@@ -20,7 +20,7 @@ namespace API.Controllers
 
         // https://localhost:7063/api/user/register
         [HttpPost ("register")]
-        public async Task <ActionResult<User>> Register(RegisterDto registerDto)
+        public async Task <ActionResult<User>> Register([FromBody]RegisterDto registerDto)
         {
             if (await UserExists(registerDto.Username)) return BadRequest("Username is taken");
             using var hmac = new HMACSHA512();
