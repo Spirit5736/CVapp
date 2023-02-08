@@ -1,4 +1,5 @@
 using API.models;
+using API.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -27,6 +28,10 @@ builder.Services.AddDbContext<UserContext>(options =>
 {
     options.UseSqlServer(connectionString);
 });
+
+builder.Services.AddCors();
+builder.Services.AddScoped<ITokenService, TokenService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
