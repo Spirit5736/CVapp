@@ -1,5 +1,6 @@
 ﻿using API.DTOs;
 using API.models;
+using API.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography;
@@ -12,10 +13,12 @@ namespace API.Controllers
     public class UserController : BaseApiController
     {
         private readonly UserContext userContext;
+        private readonly ITokenService tokenService;
 
-        public UserController(UserContext userContext)
+        public UserController(UserContext userContext, ITokenService tokenService)
         {
             this.userContext = userContext;
+            this.tokenService = tokenService;
         }
 
         // https://localhost:7063/api/user/register
@@ -38,7 +41,7 @@ namespace API.Controllers
         }
 
         [HttpPost ("login")]
-        public async Task <ActionResult<User>> Login(LoginDto loginDto)
+        public async Task <ActionResult<UserDto>> Login(LoginDto loginDto)
         {
             var user = await userContext.Users.SingleOrDefaultAsync(x => x.Username == loginDto.Username);
             if (user == null) return Unauthorized("invalid username");
@@ -51,7 +54,11 @@ namespace API.Controllers
                 if (computedHash[i] != user.PasswordHash[i] ) return Unauthorized("invalid password");
             } 
 
-            return user;
+             return new UserDto
+            {
+                Username = user.Username,
+                Token = tokenService.CreateToken(user)
+            };
         }
 
         public async Task<bool> UserExists(string username)
