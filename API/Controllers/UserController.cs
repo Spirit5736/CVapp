@@ -1,10 +1,12 @@
-﻿using API.DTOs;
+﻿using System.Net;
+using API.DTOs;
 using API.models;
 using API.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Cryptography;
 using System.Text;
+using Microsoft.AspNetCore.Authorization;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -21,9 +23,24 @@ namespace API.Controllers
             this.tokenService = tokenService;
         }
 
+        [HttpGet ("users")]
+        public async Task <ActionResult<IEnumerable<User>>> GetUsers()
+        {
+            var users = await userContext.Users.ToListAsync();
+            return users;
+        }
+
+        [Authorize]
+        [HttpGet("{id}")]
+        public async Task <ActionResult<User>> GetUser(int id)
+        {
+            return await userContext.Users.FindAsync(id);        }   
+
+
+
         // https://localhost:7063/api/user/register
         [HttpPost ("register")]
-        public async Task <ActionResult<User>> Register([FromBody]RegisterDto registerDto)
+        public async Task <ActionResult<UserDto>> Register([FromBody]RegisterDto registerDto)
         {
             if (await UserExists(registerDto.Username)) return BadRequest("Username is taken");
             using var hmac = new HMACSHA512();
@@ -37,7 +54,11 @@ namespace API.Controllers
             userContext.Users.Add(user);
             await userContext.SaveChangesAsync();
 
-            return user;
+             return new UserDto
+            {
+                Username = user.Username,
+                Token = tokenService.CreateToken(user)
+            };
         }
 
         [HttpPost ("login")]
