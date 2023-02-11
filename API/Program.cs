@@ -1,14 +1,7 @@
-using System.Text;
-using API.models;
-using API.Services;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
+using API.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+builder.Services.AddApplicationServices(builder.Configuration);
 
 //builder.Services.AddDbContext<APIContext>(options =>
 //    options.UseSqlServer(connectionString));
@@ -20,34 +13,8 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-        .AddCookie(options => //CookieAuthenticationOptions
-        {
-            options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
-        });
-builder.Services.AddDbContext<UserContext>(options =>
-{
-    options.UseSqlServer(connectionString);
-});
 
-builder.Services.AddCors();
-
-builder.Services.AddScoped<ITokenService, TokenService>();
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-        .AddJwtBearer(options =>
-        {
-            options.TokenValidationParameters = new TokenValidationParameters
-            {
-                ValidateIssuerSigningKey = true,
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding
-                .UTF8.GetBytes(builder.Configuration["TokenKey"])),
-                ValidateIssuer = false,
-                ValidateAudience = false,
-            };
-        }
-        );
+builder.Services.AddIdentityService(builder.Configuration);
 
 var app = builder.Build();
 
@@ -63,8 +30,6 @@ app.UseHttpsRedirection();
 app.UseAuthentication();
 
 app.UseAuthorization();
-
-
 
 app.MapControllers();
 
