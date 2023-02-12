@@ -15,7 +15,7 @@ namespace API.Extensions
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                     .AddCookie(options => //CookieAuthenticationOptions
                     {
-                        options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+                        options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/User/Login");
                     });
             services.AddDbContext<UserContext>(options =>
             {
