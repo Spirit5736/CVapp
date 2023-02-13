@@ -25,4 +25,8 @@ export class SignInComponent implements OnInit {
     });
   }
 
+  logout(){
+    this.loggedIn = false;
+  }
+
 }
