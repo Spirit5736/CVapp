@@ -9,12 +9,4 @@ export class AppComponent {
 
   constructor() { }
   
-  title = 'CVapp';
-
-  vacanciesTitle= "Вакансии";
-  cvTitle= "Моё резюме";
-
-
-
-
 }
