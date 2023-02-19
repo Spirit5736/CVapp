@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AccountService } from '../_services/account.service';
 
 @Component({
@@ -9,8 +10,9 @@ import { AccountService } from '../_services/account.service';
 export class SignInComponent implements OnInit {
   model: any ={};
   loggedIn = false;
+  registerForm = false;
 
-  constructor(private accountService : AccountService) { }
+  constructor(private accountService : AccountService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -27,6 +29,10 @@ export class SignInComponent implements OnInit {
 
   logout(){
     this.loggedIn = false;
+  }
+
+  register() {
+    this.router.navigate(['/register'])
   }
 
 }

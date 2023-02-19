@@ -1,45 +1,37 @@
 <body class="text-center">
-    
-  <main class="form-signin w-100 m-auto">
-    <form #loginForm = "ngForm" (ngSubmit)="login()">
-      <img class="mb-4" src="/assets/bootstrap-logo.svg" alt="" width="72" height="57">
-      <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
 
-      <div class="form-floating">
-        <input 
-        name = "username"
-        [(ngModel)]="model.username"
-        type="username" 
-        class="form-control" 
-        id="floatingInput" 
-        placeholder="E-mail" 
-        required>
-        <label for="floatingInput">Email address</label>
-        <div class="invalid-feedback">
-          Please select a valid state.
+  <main class="form-signin w-100 m-auto">
+
+    <div>
+      <form #loginForm="ngForm" (ngSubmit)="login()">
+        <img class="mb-4" src="/assets/bootstrap-logo.svg" alt="" width="72" height="57">
+        <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+        <div class="form-floating">
+          <input name="username" [(ngModel)]="model.username" type="username" class="form-control" id="floatingInput"
+            placeholder="E-mail" required>
+          <label for="floatingInput">Email address</label>
+          <div class="invalid-feedback">
+            Please select a valid state.
+          </div>
+
+        </div>
+        <div class="form-floating">
+          <input name="password" [(ngModel)]="model.password" type="password" class="form-control" id="floatingPassword"
+            placeholder="Password" required>
+          <label for="floatingPassword">Password</label>
         </div>
 
-      </div>
-      <div class="form-floating">
-        <input 
-        name = "password"
-        [(ngModel)]="model.password"
-        type="password" 
-        class="form-control" 
-        id="floatingPassword" 
-        placeholder="Password" 
-        required>
-        <label for="floatingPassword">Password</label>
-      </div>
-
-      <div class="checkbox mb-3">
-        <label>
-          <input type="checkbox" value="remember-me"> Remember me
-        </label>
-      </div>
-      <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-      <a routerLink="register-component" routerLinkActive="active" ariaCurrentWhenActive="page">No account? Register now </a>
-      <p class="mt-5 mb-3 text-muted">© 2017–2022</p>
-    </form>
+        <div class="checkbox mb-3">
+          <label>
+            <input type="checkbox" value="remember-me"> Remember me
+          </label>
+        </div>
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+        <a routerLink="/register" routerLinkActive="active" ariaCurrentWhenActive="page">No account?
+          Register now </a>
+        <p class="mt-5 mb-3 text-muted">© 2022–2023</p>
+      </form>
+    </div>
   </main>
-  </body>
+</body>
