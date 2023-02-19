@@ -10,12 +10,16 @@ import { RegisterComponent } from './register/register.component';
 import { FormsModule } from '@angular/forms';
 import { AccountService } from './_services/account.service';
 import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './home/home.component';
+import { NavComponent } from './nav/nav.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SignInComponent,
-    RegisterComponent
+    RegisterComponent,
+    HomeComponent,
+    NavComponent,
   ],
   imports: [
     BrowserModule,
@@ -23,7 +27,6 @@ import { HttpClientModule } from '@angular/common/http';
     NgbNavModule,
     FormsModule,
     HttpClientModule,
-
   ],
   providers: [AccountService],
   bootstrap: [AppComponent]
