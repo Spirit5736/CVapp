@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { error } from '@angular/compiler/src/util';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AccountService } from '../_services/account.service';
 
 @Component({
   selector: 'app-register',
@@ -9,17 +12,24 @@ import { FormsModule } from '@angular/forms';
 export class RegisterComponent implements OnInit {
   model: any = {};
 
-  constructor() { }
+  constructor(private accountService : AccountService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
 
   register() {
-    console.log(this.model);
+    this.accountService.register(this.model).subscribe(response => {
+      console.log(response);
+      this.cancel();
+    }, error => {
+      console.log(error);
+    });
+    
+
   }
 
   cancel() {
-    console.log("cancelled");
+    this.router.navigate(['/sign-in'])
   }
 }
