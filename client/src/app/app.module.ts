@@ -12,6 +12,7 @@ import { AccountService } from './_services/account.service';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { NavComponent } from './nav/nav.component';
+import { CvComponent } from './cv/cv.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { NavComponent } from './nav/nav.component';
     RegisterComponent,
     HomeComponent,
     NavComponent,
+    CvComponent,
   ],
   imports: [
     BrowserModule,
