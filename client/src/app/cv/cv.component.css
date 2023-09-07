@@ -1,0 +1,109 @@
+:host { 
+    display: contents; 
+  }
+  .wrap-container {
+    width: 100%;
+    display: flex;
+    overflow: auto;
+    min-height: 100vh;
+    align-items: center;
+    flex-direction: column;
+  }
+  .wrap-wrap {
+    gap: 32px;
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: flex-start;
+    flex-shrink: 0;
+    flex-direction: column;
+  }
+  .wrap-card {
+    display: flex;
+    overflow: hidden;
+    align-items: flex-start;
+    border-color: rgba(222, 226, 230, 1);
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 12px;
+    flex-direction: column;
+    background-color: var(--dl-color-default-white);
+  }
+  .wrap-cardimg {
+    gap: 8px;
+    display: flex;
+    align-items: center;
+    border-radius: 8px 8px 0 0;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .wrap-rectangle37 {
+    width: 350px;
+    height: 192px;
+    align-self: flex-end;
+  }
+  .wrap-cardbody {
+    gap: 24px;
+    display: flex;
+    padding: 24px;
+    align-self: stretch;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .wrap-cardcontent {
+    gap: 8px;
+    display: flex;
+    align-self: stretch;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  .wrap-text {
+    color: var(--dl-color-heading-titlecolor);
+    width: 302px;
+    height: auto;
+    text-align: left;
+    line-height: normal;
+  }
+  .wrap-text2 {
+    color: var(--dl-color-heading-titlecolor);
+    width: 302px;
+    height: auto;
+    text-align: left;
+    line-height: 28px;
+  }
+  .wrap-cardbutton {
+    width: 100px;
+    height: 50px;
+    display: flex;
+    align-items: flex-start;
+    flex-shrink: 0;
+  }
+  .wrap-buttonbg {
+    top: 419px;
+    left: 27px;
+    width: 100px;
+    height: 50px;
+    position: absolute;
+    border-radius: 4px;
+  }
+  .wrap-text4 {
+    top: 445px;
+    left: 57px;
+    color: rgba(255, 255, 255, 1);
+    height: auto;
+    position: absolute;
+    font-size: 16px;
+    font-style: Bold;
+    text-align: center;
+    font-family: Inter;
+    font-weight: 700;
+    line-height: normal;
+    font-stretch: normal;
+    text-decoration: none;
+  }
+  .wrap-text6 {
+    color: var(--dl-color-heading-titlecolor);
+    height: auto;
+    text-align: left;
+    line-height: normal;
+  }
