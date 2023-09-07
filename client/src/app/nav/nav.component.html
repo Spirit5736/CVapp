@@ -10,15 +10,15 @@
             <a class="nav-link active" aria-current="page" href="#">{{vacanciesTitle}}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">{{cvTitle}}</a>
+            <a class="nav-link" href="cv">{{cvTitle}}</a>
           </li>
           <li class="nav-item">
             <a class="nav-link disabled">Disabled</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item"  *ngIf = '!accountService.isButtonClicked'>
             <a class="nav-link" href="register">Register</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item"  *ngIf = '!accountService.isButtonClicked'>
             <a class="nav-link" href="sign-in">Login</a>
           </li>
         </ul>
