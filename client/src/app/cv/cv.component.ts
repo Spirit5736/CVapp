@@ -6,11 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cv.component.css']
 })
 export class CvComponent{
-  Name = 'Angular';
 
   ngOnInit(): void {
   }
-
   openFile() {
     console.log('hello')
     document.querySelector('input')?.click();
