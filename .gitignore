@@ -20,6 +20,7 @@
 mono_crash.*
 
 # Build results
+obj/*
 API/obj/*
 [Dd]ebug/
 [Dd]ebugPublic/
@@ -487,3 +488,10 @@ $RECYCLE.BIN/
 API/appsettings.Development.json
 
 API/appsettings.json
+API/cvapp.db
+API/appsettings.Development.json
+API/obj/Debug/net8.0/refint/API.dll
+API/obj/Debug/net8.0/ref/API.dll
+API/obj/project.nuget.cache
+API/obj/Debug/net8.0/API.assets.cache
+API/obj/Debug/net8.0/API.csproj.CoreCompileInputs.cache
